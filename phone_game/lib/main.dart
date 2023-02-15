@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(const MyApp());
+  });
 }
 
 int _difficultySettings = 0;
@@ -13,15 +16,14 @@ int _difficultySettings = 0;
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter sDemo',
+      title: 'Phone_game',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Phone_game'),
     );
   }
 }
@@ -46,12 +48,12 @@ class SecondScreen extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const CoopScreen(title: "marcin")));
+                builder: (context) => const CoopScreen(title: "Phone_game")));
       } else {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const ThirdScreen(title: "marcin")));
+                builder: (context) => const ThirdScreen(title: "Phone_game")));
       }
     }
 
@@ -68,12 +70,13 @@ class SecondScreen extends StatelessWidget {
           ),
         ),
         Container(
-          alignment: Alignment(0, -0.8),
+          alignment: const Alignment(0, -0.8),
           child: ButtonTheme(
             height: 200,
             child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.black.withOpacity(0.05),
+                  shadowColor: Colors.transparent,
+                  backgroundColor: Colors.transparent,
                 ),
                 onPressed: () {
                   gameChanger(1);
@@ -86,10 +89,11 @@ class SecondScreen extends StatelessWidget {
           ),
         ),
         Container(
-          alignment: Alignment(0, -0.5),
+          alignment: const Alignment(0, -0.5),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: () {
                 gameChanger(2);
@@ -98,10 +102,11 @@ class SecondScreen extends StatelessWidget {
                   height: 100, scale: 2.5)),
         ),
         Container(
-          alignment: Alignment(0, -0.2),
+          alignment: const Alignment(0, -0.2),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: () {
                 gameChanger(3);
@@ -110,10 +115,11 @@ class SecondScreen extends StatelessWidget {
                   height: 100, scale: 2.5)),
         ),
         Container(
-          alignment: Alignment(0, 0.1),
+          alignment: const Alignment(0, 0.1),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: () {
                 gameChanger(4);
@@ -122,10 +128,11 @@ class SecondScreen extends StatelessWidget {
                   height: 100, scale: 2.5)),
         ),
         Container(
-          alignment: Alignment(0, 0.4),
+          alignment: const Alignment(0, 0.4),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: () {
                 gameChanger(5);
@@ -134,10 +141,11 @@ class SecondScreen extends StatelessWidget {
                   Image.asset('assets/images/1vs1.png', height: 100, scale: 3)),
         ),
         Container(
-          alignment: Alignment(0, 0.7),
+          alignment: const Alignment(0, 0.7),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: () {
                 showDialog(
@@ -160,10 +168,11 @@ class SecondScreen extends StatelessWidget {
                   height: 100, scale: 2.5)),
         ),
         Container(
-          alignment: Alignment(0, 1),
+          alignment: const Alignment(0, 1),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: () {
                 Navigator.pop(context);
@@ -283,7 +292,6 @@ class _ThirdScreenState extends State<ThirdScreen> {
             barrierDismissible: false,
             context: context,
             builder: (context) => AlertDialog(
-
                   title: const Text("Przegrałeś!"),
                   content: Text(
                       "Przeciwnik strzelił w: $seconds:$milliSeconds sekundy."),
@@ -387,7 +395,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
           ),
         ),
         Container(
-          alignment: Alignment(-1, 0),
+          alignment: const Alignment(-1, 0),
           child: Container(
             color: getColor(),
             height: 100,
@@ -397,20 +405,22 @@ class _ThirdScreenState extends State<ThirdScreen> {
         Visibility(
             visible: !gameStarted,
             child: Container(
-              alignment: Alignment(0, -0.5),
+              alignment: const Alignment(0, -0.5),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black.withOpacity(0.05),
+                    shadowColor: Colors.transparent,
+                    backgroundColor: Colors.transparent,
                   ),
                   onPressed: startTimer,
                   child: Image.asset('assets/images/start.png',
                       height: 200, scale: 2.5)),
             )),
         Container(
-          alignment: Alignment(-0.8, 0.8),
+          alignment: const Alignment(-0.8, 0.8),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: playerPress,
               child: Image.asset('assets/images/strzal.png',
@@ -419,14 +429,15 @@ class _ThirdScreenState extends State<ThirdScreen> {
         Visibility(
             visible: gameStartCount,
             child: Container(
-              alignment: Alignment(0, -0.5),
+              alignment: const Alignment(0, -0.5),
               child: Image.asset(getCountDown(), height: 200, scale: 2.5),
             )),
         Container(
-          alignment: Alignment(1, 0),
+          alignment: const Alignment(1, 0),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: returned,
               child: Image.asset('assets/images/cofnij.png',
@@ -602,10 +613,11 @@ class _CoopScreenState extends State<CoopScreen> {
           ),
         ),
         Container(
-          alignment: Alignment(0.8, -0.95),
+          alignment: const Alignment(0.8, -0.95),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: () {
                 playerPress(2);
@@ -614,7 +626,7 @@ class _CoopScreenState extends State<CoopScreen> {
                   height: 150, scale: 2.5)),
         ),
         Container(
-          alignment: Alignment(-1, 0),
+          alignment: const Alignment(-1, 0),
           child: Container(
             color: getColor(),
             height: 100,
@@ -624,20 +636,22 @@ class _CoopScreenState extends State<CoopScreen> {
         Visibility(
             visible: !gameStarted,
             child: Container(
-              alignment: Alignment(0, -0.5),
+              alignment: const Alignment(0, -0.5),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.black.withOpacity(0.05),
+                    shadowColor: Colors.transparent,
+                    backgroundColor: Colors.transparent,
                   ),
                   onPressed: startTimer,
                   child: Image.asset('assets/images/start.png',
                       height: 200, scale: 2.5)),
             )),
         Container(
-          alignment: Alignment(-0.8, 0.95),
+          alignment: const Alignment(-0.8, 0.95),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: () {
                 playerPress(1);
@@ -648,14 +662,15 @@ class _CoopScreenState extends State<CoopScreen> {
         Visibility(
             visible: gameStartCount,
             child: Container(
-              alignment: Alignment(0, -0.5),
+              alignment: const Alignment(0, -0.5),
               child: Image.asset(getCountDown(), height: 200, scale: 2.5),
             )),
         Container(
-          alignment: Alignment(1, 0),
+          alignment: const Alignment(1, 0),
           child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: Colors.black.withOpacity(0.05),
+                shadowColor: Colors.transparent,
+                backgroundColor: Colors.transparent,
               ),
               onPressed: returned,
               child: Image.asset('assets/images/cofnij.png',
@@ -708,10 +723,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           FadeTransition(
               opacity: _animation,
               child: Container(
-                  alignment: Alignment(0, 0.9),
+                  alignment: const Alignment(0, 0.9),
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: Colors.black.withOpacity(0.05),
+                        shadowColor: Colors.transparent,
+                        backgroundColor: Colors.transparent,
                       ),
                       onPressed: menuChanger,
                       child: Image.asset('assets/images/menuScreen.png')))),
