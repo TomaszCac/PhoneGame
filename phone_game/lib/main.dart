@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -142,6 +141,7 @@ class SecondScreen extends StatelessWidget {
               ),
               onPressed: () {
                 showDialog(
+                    barrierDismissible: false,
                     context: context,
                     builder: (context) => AlertDialog(
                           title: const Text("Instrukcja"),
@@ -190,14 +190,14 @@ class _ThirdScreenState extends State<ThirdScreen> {
   int seconds = 0;
   int milliSeconds = 0;
   int randomSeconds = 0;
-  bool isRandomEqual = false;
-  bool gameStarted = false;
-  bool gameStartCount = false;
-  String countDownDisplay = "";
-  bool playerPressedButton = false;
   int aiSeconds = 0;
   int aiMilliseconds = 0;
   int x = 3;
+  bool isRandomEqual = false;
+  bool gameStarted = false;
+  bool gameStartCount = false;
+  bool playerPressedButton = false;
+  String countDownDisplay = "";
 
   Timer timerOne = Timer.periodic(const Duration(seconds: 1), (_) {});
   Random rng = Random();
@@ -271,15 +271,19 @@ class _ThirdScreenState extends State<ThirdScreen> {
   playerTimer() {
     watch.reset();
     watch.start();
+
     timer = Timer.periodic(const Duration(milliseconds: 1), (_) {
       seconds = (watch.elapsedMilliseconds ~/ 1000);
       milliSeconds = (watch.elapsedMilliseconds % 1000) ~/ 10;
       if (seconds == aiSeconds && milliSeconds == aiMilliseconds) {
         timer.cancel();
         timerOne.cancel();
+
         showDialog(
+            barrierDismissible: false,
             context: context,
             builder: (context) => AlertDialog(
+
                   title: const Text("Przegrałeś!"),
                   content: Text(
                       "Przeciwnik strzelił w: $seconds:$milliSeconds sekundy."),
@@ -296,6 +300,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
         timer.cancel();
         timerOne.cancel();
         showDialog(
+            barrierDismissible: false,
             context: context,
             builder: (context) => AlertDialog(
                   title: const Text("Wygrałeś!"),
@@ -341,6 +346,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
       timer.cancel();
       timerOne.cancel();
       showDialog(
+          barrierDismissible: false,
           context: context,
           builder: (context) => AlertDialog(
                 title: const Text("Przegrałeś!"),
@@ -508,6 +514,7 @@ class _CoopScreenState extends State<CoopScreen> {
         timer.cancel();
         timerOne.cancel();
         showDialog(
+            barrierDismissible: false,
             context: context,
             builder: (context) => AlertDialog(
                   title: Text("Wygrywa gracz $winnerPlayer!"),
@@ -554,6 +561,7 @@ class _CoopScreenState extends State<CoopScreen> {
       timer.cancel();
       timerOne.cancel();
       showDialog(
+          barrierDismissible: false,
           context: context,
           builder: (context) => AlertDialog(
                 title: Text("Przegrał gracz $id!"),
@@ -667,12 +675,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     parent: _controller,
     curve: Curves.easeIn,
   );
-
-  @override
-  void initState() {
-    final player = AudioCache();
-    player.play('assets/sounds/rdrtheme.mp3');
-  }
 
   @override
   void dispose() {
